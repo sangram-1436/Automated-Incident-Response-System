@@ -22,8 +22,10 @@ The system detects brute force attacks in Splunk and triggers a Python script to
 - 🚫 Simulated IP Blocking
 - 📊 Structured Logging for Analysis
 
-
 ---
+
+## 🏗️ Architecture
+
 
 Attacker → Logs → Splunk (SIEM)
 ↓
@@ -32,7 +34,6 @@ Alert Trigger
 Python Script
 ↓
 VirusTotal API → Report Generation → Response Action
-
 
 
 ---
@@ -53,19 +54,13 @@ VirusTotal API → Report Generation → Response Action
 index=windows EventCode=4625
 | stats count by src_ip, user
 | where count > 5
-
-
-## 🏗️ Architecture
-
-
+```
 💡 Explanation:
 Detects multiple failed login attempts
 Groups events by source IP
 Flags IPs with more than 5 failures as brute force attack
 
 MITRE ATT&CK Mapping: T1110 (Brute Force)
-
-
 
 🔔 Alert Workflow
 Real-time alert triggers when suspicious activity is detected
@@ -90,37 +85,31 @@ Simulates response action (IP blocking)
 
 📊 CSV Report
 
-
+📄 Sample Incident Report
 INCIDENT RESPONSE REPORT
 
+```
 Time: 2026-03-22
 IP Address: 8.8.8.8
 Threat Level: MALICIOUS
 Malicious Score: 1
 Suspicious Score: 0
+```
 
 Action Taken: Logged & Investigated
-
 💡 Use Case & Impact
 Reduces manual effort for SOC analysts
 Enables faster threat detection and response
 Automates enrichment and reporting
-Improves operational efficiency in SOC environmentsv
-
-
+Improves operational efficiency in SOC environments
 🚀 Future Enhancements
 Email alert integration
 Real firewall-based IP blocking
 Splunk REST API integration
 Dashboard visualization
 Full SOAR integration
-
 🏆 Conclusion
 
 This project demonstrates a complete SOC workflow including detection, enrichment, reporting, and response automation.
 
 It reflects real-world security operations and showcases practical skills required for SOC Analyst roles.
-
-👨‍💻 Author
-
-Sangram Rajput
